@@ -1,29 +1,39 @@
 ﻿namespace GestãoDeMotoboy.Modelos;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
-internal class Motoboy{
-    public string nomeDoMotoboy { get; set; } 
-    public string telefone { get; set; }
-    public string status = "Disponível na Base"; // vindo padrao do atributo, sem precisar passar argumento no construtor 
+public class Motoboy
+{
+    public string Nome { get; set; }
+    public string Telefone { get; set; }
+    public Rota? RotaAtual { get; private set; }
 
-    public Motoboy() { }
+    // Propriedades calculadas (sem duplicidade)
+    public bool EstaDisponivel => RotaAtual == null;
+    public string StatusAtual => EstaDisponivel ? "Disponível na Base" : "Em Rota de Entrega";
 
-    public Motoboy(string nomeDoMotoboy, string telefone)
+    public Motoboy(string nome, string telefone)
     {
-        this.nomeDoMotoboy = nomeDoMotoboy;
-        this.telefone = telefone;
+        Nome = nome;
+        Telefone = telefone;
+        RotaAtual = null;
     }
 
-    public void ExibirCadastroDoMotoboy()
+    public void AtribuirRota(Rota novaRota)
     {
-        Console.WriteLine($"Motoboy: {nomeDoMotoboy} | Telefone: {telefone}");
+        RotaAtual = novaRota;
     }
 
-    public void AlterarStatus(string novoStatus)
+    public void FinalizarRota()
     {
-        status = novoStatus;
+        RotaAtual = null;
+    }
+
+    public void ExibirPainel()
+    {
+        Console.WriteLine($"\nMotoboy: {Nome} | Tel: {Telefone} | Status: [{StatusAtual}]");
+
+        if (RotaAtual != null)
+        {
+            RotaAtual.ExibirDetalhesRota();
+        }
     }
 }
