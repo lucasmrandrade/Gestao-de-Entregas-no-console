@@ -54,7 +54,8 @@ void ExibirOpcoesDoMenu()
         else
         {
             Console.WriteLine("\nOpção inválida!");
-            Thread.Sleep(1500);
+            Thread.Sleep(1000);
+            ExibirOpcoesDoMenu(); // colocado no fluxo, pra voltar a escolha 
         }
     }
 
