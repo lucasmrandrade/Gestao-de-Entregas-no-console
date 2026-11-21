@@ -1,4 +1,4 @@
-﻿namespace GestãoDeMotoboy.Modelos;
+﻿namespace GestaoDeEntregas.Modelos;
 
 public class Motoboy
 {

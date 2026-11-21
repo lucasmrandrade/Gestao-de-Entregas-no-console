@@ -1,6 +1,6 @@
 ﻿using System;
-using GestãoDeMotoboy.Modelos;
-namespace GestãoDeMotoboy.Menus;
+using GestaoDeEntregas.Modelos;
+namespace GestaoDeEntregas.Menus;
 
 internal class FinalizaSistema : Menu
 {
