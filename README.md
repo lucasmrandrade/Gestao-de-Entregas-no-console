@@ -44,7 +44,7 @@ Depois de cada ação, o programa volta ao menu. A opção 5 encerra o sistema.
 Pré-requisito: [.NET SDK 10](https://dotnet.microsoft.com/download).
 
 ```
-git clone <url-do-repositorio>
+git clone git@github.com:lucasmrandrade/Gestao-de-Entregas-no-console.git
 cd GestaoDeEntregas
 dotnet run
 ```
