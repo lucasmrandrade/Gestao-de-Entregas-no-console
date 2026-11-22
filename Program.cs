@@ -3,11 +3,11 @@ using GestaoDeEntregas.Menus;
 using GestaoDeEntregas.Repositorio;
 
 Dictionary<string, Motoboy> motoboysRegistrados = new()!;
-IMotoboyRepositorio repositorio = new MotoboyRepositorioMemoria(motoboysRegistrados);
+IMotoboyRepositorio repositorio = new MotoboyRepositorioMemoria(motoboysRegistrados); // instanciando o repositorio pra receber no construtor 
 
 // dicionario de opcoes do menu 
 Dictionary<int, Menu> opcoesMenu = new()!;
-opcoesMenu.Add(1, new CadastroMotoboy(repositorio));
+opcoesMenu.Add(1, new CadastroMotoboy(repositorio)); // passado e construido 
 opcoesMenu.Add(2, new AtribuirRotaMotoboy());
 opcoesMenu.Add(3, new FinalizarEntregaMotoboy());
 opcoesMenu.Add(4, new MenuExibirDetalhes());
