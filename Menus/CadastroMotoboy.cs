@@ -1,10 +1,20 @@
 ﻿using System;
 using GestaoDeEntregas.Modelos;
+using GestaoDeEntregas.Repositorio;
 namespace GestaoDeEntregas.Menus;
 
 internal class CadastroMotoboy : Menu
 {
-     public override void Executar(Dictionary<string, Motoboy> motoboysRegistrados)
+    // como menu herda a classe cadastro, criei ele privado apenas pra clase 
+    // aos poucos a tendencia e eliminar a busca dicionario e depender menos da memoria 
+    private IMotoboyRepositorio MotoboyRepositorio { get; }
+
+    public CadastroMotoboy(IMotoboyRepositorio motoboyRepositorio)
+    {
+        MotoboyRepositorio = motoboyRepositorio;
+    }
+
+    public override void Executar(Dictionary<string, Motoboy> motoboysRegistrados)
     {
         base.Executar(motoboysRegistrados);
 
@@ -21,10 +31,11 @@ internal class CadastroMotoboy : Menu
             Console.Write("Digite o número de telefone: ");
             string telefone = Console.ReadLine()!.Trim();
 
-            // verifica no dicionario se ele existe, se nao ele parte pra cadastro
+            // se existir espaco vazio e o usuario dar enter da como invalido 
             if (!string.IsNullOrWhiteSpace(nome))
             {
-                if (!motoboysRegistrados.ContainsKey(nome))
+                // busca pela interface, o metodo buscar por nome se retornar null deixa cadastrar 
+                if (MotoboyRepositorio.BuscarPorNome(nome) == null)
                 {
                     Motoboy novoMotoboy = new(nome, telefone);
                     motoboysRegistrados.Add(nome, novoMotoboy);

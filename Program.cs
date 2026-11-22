@@ -1,12 +1,13 @@
 ﻿using GestaoDeEntregas.Modelos;
 using GestaoDeEntregas.Menus;
+using GestaoDeEntregas.Repositorio;
 
-Dictionary<string, Motoboy> motoboysRegistrados = new();
-
+Dictionary<string, Motoboy> motoboysRegistrados = new()!;
+IMotoboyRepositorio repositorio = new MotoboyRepositorioMemoria(motoboysRegistrados);
 
 // dicionario de opcoes do menu 
-Dictionary<int, Menu> opcoesMenu = new();
-opcoesMenu.Add(1, new CadastroMotoboy());
+Dictionary<int, Menu> opcoesMenu = new()!;
+opcoesMenu.Add(1, new CadastroMotoboy(repositorio));
 opcoesMenu.Add(2, new AtribuirRotaMotoboy());
 opcoesMenu.Add(3, new FinalizarEntregaMotoboy());
 opcoesMenu.Add(4, new MenuExibirDetalhes());
@@ -42,7 +43,7 @@ void ExibirOpcoesDoMenu()
         Console.WriteLine("5 - Sair");
 
         Console.Write("\nDigite a sua opção: ");
-        string opcaoEscolha = Console.ReadLine();
+        string opcaoEscolha = Console.ReadLine()!;
 
         int opcaoEscolhaNumerica = int.Parse(opcaoEscolha);
 
